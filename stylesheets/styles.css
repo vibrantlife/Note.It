@@ -1,9 +1,0 @@
-$margin: 0px auto;
-$myColor: purple;
-$width: 600px;
-
-h1 {
-  color: $myColor;
-  $margin: $margin;
-
-}
