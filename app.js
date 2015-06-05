@@ -27,7 +27,7 @@ $('#note').keyup(function(event){
 
 //add note to list
 function addNoteToList(note,id) {
-  var $noteElement = $("<li><div class='edit' id='"+ id + "'>" + note +"</div><a href='#' id='delete_" + id + "'>Delete</a></li>");
+  var $noteElement = $("<li><div class='editable' id='"+ id + "'>" + note + "</div><a href='#' class='delete' id='delete_" + id + "'>Delete</a></li>" );
   var $form = $('#note-form');
   var $noteList = $('#show-notes');
   $newNote = $('#note');
@@ -44,6 +44,9 @@ function addNoteToList(note,id) {
       notes[id] = note.value;
       localStorage['notes'] = JSON.stringify(notes);
       return(note);
+    }, {
+      cols: 5
+
     });
 // delete note
   $('#delete_' + id).on('click', function () {
