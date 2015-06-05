@@ -18,7 +18,7 @@ var addNote = function() {
 
 $('#submit').on('click', function(){
   // console.log('inside submit');
-  if($('#note').val() === '' ){
+  if($.trim($('#note').val()) === '' ){
     alert('Opps! You forgot to add a note!');
   } else {
     addNote();
@@ -39,7 +39,10 @@ function addNoteToList(note,id) {
   })
 
   // append note to div
-  $('#show-notes').prepend($noteElement).fadeIn('slow');
+  $('#show-notes').prepend(
+    ($noteElement).hide().fadeIn('slow')
+    );
+
 
 // edit note
   $("#"+id).editable("click",function(note,settings){
