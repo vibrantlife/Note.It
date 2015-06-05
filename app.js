@@ -1,52 +1,47 @@
-var i = Number(localStorage.getItem('note-counter')) + 1,
-$form = $('#note-form'),
-$note = $('#show-note'),
-$newNote = $('#note'),
-order = [];
+function addNoteToList(note) {
+  $('#show-notes').append("<li>" + note + " <a href='#' class='cancel-btn'>Cancel Note</a></li>");
+}
 
-$form.submit(function(event) {
-  event.preventDefault();
-  $.publish('/add/', []);
-  // announcing form has been submitted
-});
+if (localStorage['notes']) {
+  var notes = JSON.parse(localStorage[
+    'notes']);
+} else {
+  var notes = [];
+}
 
-$.subscribe('/add/', function() {
-  if ($newNote.val() !== "")
-    // save value of note field and save to local storage
-   {
-localStorage.setItem("note-" + i, $newNote.val());
+for (var i=0; i < notes.length; i++) {
+  addNoteToList(notes[i]);
+}
 
-// set note max counter so on page refresh it increments
-localStorage.setItem('note-counter', i);
+var addNote = function() {
+  // get value from note input
+  var noteValue = $('#note').val();
 
-// append a new list note w/value of new note-counter
-$note.append(
-  "<li id='todo-" + i + "'>"
-  + "<span class='editable'>"
-  + localStorage.getItem("todo-" + i)
-  + "</span><a href='#'>x</a></li>");
-$.publish('/regenerate-note/', []);
-// fade in note
-$("todo-" + i).css('display', 'none').fadeIn();
+  // add note to array
+  notes.push(noteValue);
 
-// empty input
-$newNote.val("");
+  // save to localStorage
+  localStorage['notes'] = JSON.stringify(notes);
 
-i++;
+  // append note to addNoteToList
+  addNoteToList(noteValue);
+
+  // clear input field
+  $('#note').val('').focus();
+}
+
+$('#submit').click(addNote);
+$('#note').keyup(function(event){
+  if (event.keyCode === 13) {
+    addNote();
   }
 });
 
-$.subscribe('/regenerate-note', function(){
-  var $newNote = $('#show-notes li');
-  // empty order []
-  order.length = 0;
-
-  // iterate. get id and add to array
-  $newNote.each(function(){
-    var $this = $(this).attr('id');
-    order.push($this);
-  });
-
-  // convert array to string and + to local storage
-  localStorage.setItem('todo-orders', order.join(','));
+$('.done-btn').on('click', function(){
+  $(this).parent('li').addClass('done');
 });
+
+$('.cancel-btn').on('click', function(){
+  $(this).parent('li').fadeOut('slow');
+
+  });
