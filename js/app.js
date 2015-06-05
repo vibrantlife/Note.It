@@ -16,9 +16,11 @@ var addNote = function() {
   $('#note').val('').focus();
 }
 
-$('#submit').on('click', addNote);
-$('#note').keyup(function(event){
-  if (event.keyCode === 13) {
+$('#submit').on('click', function(){
+  // console.log('inside submit');
+  if($('#note').val() === '' ){
+    alert('Opps! You forgot to add a note!');
+  } else {
     addNote();
   }
 });
