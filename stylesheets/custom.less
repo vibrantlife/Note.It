@@ -2,7 +2,67 @@ h1, h2, h4 {
   font-family: @montserrat;
 }
 
-
-article, details, figcaption, figure, footer, header, section {
-  display: block;
+h1 {
+  margin: 20px 0;
+  color: @green;
 }
+
+#container {
+  width: 800px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+input[type="text"] {
+  height: 30px;
+  width: 350px;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+input[type="submit"] {
+  height: 56px;
+  padding: 10px;
+  border: 1px solid @blue;
+  background-color: @blue;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-family: @montserrat;
+}
+
+ul {
+  margin: 15px auto 0;
+  padding: 0;
+  width: 545px;
+}
+
+ul li {
+  list-style-type: none;
+  font-size: 24px;
+  cursor: move;
+  background-color: @gray;
+  margin-bottom: 5px;
+  padding: 10px;
+  text-align: left;
+}
+
+ul li span {
+  cursor: text;
+}
+
+ul li a,
+ul li a:link {
+  float: right;
+  display: none;
+  text-decoration: none;
+  color: @purple;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+
