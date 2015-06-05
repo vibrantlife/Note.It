@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Note.It</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <!-- linking stylesheet and less cdn -->
+  <link rel="stylesheet/less" href="stylesheets/styles.less" type="text/css" >
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+  <!-- application js file -->
+  <!-- fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js">
+  </script>
+  <![endif] -->
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif] -->
+</head>
+<body>
+  <div id="container" id="pagewrap">
+    <header id="header">
+      <h1>stuff</h1>
+      <h2>I really need to do</h2>
+      <h4>A Web App For Note Taking. Click or Tap a Note to Edit.</h4>
+      <form id="note-form">
+        <input id="note" type="text" name="noteInput"/>
+        <input id="submit" type="submit" value="Note It!">
+      </form>
+    </header><!-- /header -->
+
+    <ul id="show-notes"></ul>
+  </div> <!-- /container -->
+
+
+    <footer id="footer">
+      <h4>Made by Nichole Shelton <a href="nicholesvibrantlife.com">NicholeSVibrantLife.com</a> </h4>
+    </footer>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.editable.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
