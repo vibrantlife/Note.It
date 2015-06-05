@@ -16,29 +16,25 @@ var addNote = function() {
   $('#note').val('').focus();
 }
 
-$('#submit').click(addNote);
+$('#submit').on('click', addNote);
 $('#note').keyup(function(event){
   if (event.keyCode === 13) {
     addNote();
   }
 });
 
-if (localStorage['notes']) {
-  var notes = JSON.parse(localStorage[
-    'notes']);
-} else {
-  var notes = [];
-}
-
 
 
 //add note to list
 function addNoteToList(note,id) {
-  var $noteElement = $("<li><div class='edit' id='"+ id + "'>" + note +"</div><a href='#' id='delete_" + id + "'>X</a></li>");
+  var $noteElement = $("<li><div class='edit' id='"+ id + "'>" + note +"</div><a href='#' id='delete_" + id + "'>Delete</a></li>");
   var $form = $('#note-form');
   var $noteList = $('#show-notes');
   $newNote = $('#note');
 
+  $form.submit(function(event){
+    event.preventDefault();
+  })
 
   // append note to div
   $('#show-notes').prepend($noteElement).fadeIn('slow');
@@ -51,13 +47,20 @@ function addNoteToList(note,id) {
     });
 // delete note
   $('#delete_' + id).on('click', function () {
-      $(this).parent().fadeOut(1600, function() {
+      $(this).parent().fadeOut(500, function() {
         $(this).closest('li').remove();
         console.log(notes);
         notes.splice(id, 1);
         localStorage['notes'] = JSON.stringify(notes);
       });
   });
+}
+
+if (localStorage['notes']) {
+  var notes = JSON.parse(localStorage[
+    'notes']);
+} else {
+  var notes = [];
 }
 
 // loop through all notes on list and add them
