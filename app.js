@@ -1,14 +1,18 @@
 // add note
 function addNoteToList(note,id) {
-  $('#show-notes').prepend("<li><div class='edit' id='"+id+"'>"+note+"</div><a href='#' class='edit'>Edit</a></li>");
+  $('#show-notes').prepend("<li><div class='edit' id='"+id+"'>"+note+"</div><a href='#' id='delete_"+id+"'>X</a></li>");
   $("#"+id).editable("click",function(note,settings){
-      console.log(this);
-      console.log(note);
       notes[id] = note.value;
-       localStorage['notes'] = JSON.stringify(notes);
-      console.log(notes, id);
+      localStorage['notes'] = JSON.stringify(notes);
       return(note);
     });
+
+  $('#delete_' + id).on('click', function () {
+    console.log(id);
+      $('#' + id).closest('li').remove();
+      notes.splice(id, 1);
+      localStorage['notes'] = JSON.stringify(notes);
+  });
 }
 
 if (localStorage['notes']) {
@@ -33,7 +37,7 @@ var addNote = function() {
   localStorage['notes'] = JSON.stringify(notes);
 
   // append note to addNoteToList
-  addNoteToList(noteValue,notes.length-1);
+  addNoteToList(noteValue,notes.length - 1);
 
   // clear input field
   $('#note').val('').focus();
