@@ -1,5 +1,11 @@
-function addNoteToList(note) {
-  $('#show-notes').append("<li>" + note + " <a href='#' class='cancel-btn'>Cancel Note</a></li>");
+// add note
+function addNoteToList(note,id) {
+  $('#show-notes').prepend("<li><div class='edit' id='"+id+"'>"+note+"</div><a href='#' class='edit'>Edit</a></li>");
+  $("#"+id).editable("click",function(value,settings){
+      console.log(this);
+      console.log(value);
+      return(value);
+    });
 }
 
 if (localStorage['notes']) {
@@ -10,7 +16,7 @@ if (localStorage['notes']) {
 }
 
 for (var i=0; i < notes.length; i++) {
-  addNoteToList(notes[i]);
+  addNoteToList(notes[i],i);
 }
 
 var addNote = function() {
@@ -24,7 +30,7 @@ var addNote = function() {
   localStorage['notes'] = JSON.stringify(notes);
 
   // append note to addNoteToList
-  addNoteToList(noteValue);
+  addNoteToList(noteValue,notes.length-1);
 
   // clear input field
   $('#note').val('').focus();
@@ -37,11 +43,8 @@ $('#note').keyup(function(event){
   }
 });
 
-$('.done-btn').on('click', function(){
-  $(this).parent('li').addClass('done');
-});
 
-$('.cancel-btn').on('click', function(){
-  $(this).parent('li').fadeOut('slow');
 
-  });
+
+
+
