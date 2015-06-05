@@ -1,12 +1,24 @@
+body {
+  background-image: url('../imgs/lights_background.jpg');
+  background-position: 10% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+
 h1, h2, h4 {
   font-family: @montserrat;
   margin: 5px;
 }
 
+h2, h4 {
+  color: @blue;
+}
+
 h1 {
-  font-size: 56px;
+  font-size: 106px;
   margin: 20px 0;
-  color: @green;
+  color: @purple;
 }
 
 #container {
@@ -24,15 +36,28 @@ input[type="text"] {
 }
 
 input[type="submit"] {
+  display: inline-block;
   height: 56px;
-  padding: 10px;
-  border: 1px solid @blue;
-  background-color: @blue;
+  padding: 8px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  border: 2px solid @purple;
   font-size: 24px;
   cursor: pointer;
   outline: none;
-  color: white;
+  color: @purple;
   font-family: @montserrat;
+  transition: border-color 0.3s ease-out,
+              color 0.3s ease-out;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:active {
+  color: @green;
+  border-color: @green;
+  transition: border-color 0.4s ease-in,
+              color 0.4 ease-in;
 }
 
 ul {
@@ -46,6 +71,7 @@ ul li {
   font-family: @muli;
   margin-bottom: 5px;
   padding: 10px;
+  color: @purple;
 }
 
 ul li span {
@@ -56,7 +82,7 @@ ul li a,
 ul li a:link {
   text-decoration: none;
   color: @blue;
-  font-size: 12px;
+  font-size: 20px;
 }
 
 ul li a:hover {
@@ -64,3 +90,7 @@ ul li a:hover {
   color: @green;
 }
 
+#container {
+  background: rgba(189, 195, 199, 0.65);
+  border: 2px solid @gray;
+}

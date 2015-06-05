@@ -45,9 +45,22 @@ function addNoteToList(note,id) {
       localStorage['notes'] = JSON.stringify(notes);
       return(note);
     }, {
-      cols: 5,
-
-    });
+      type: 'text',
+      cols: 50,
+      cancel: 'cancel',
+      submit: 'submit',
+      placeholder: "Click to set text",
+      tooltip: "Click to update",
+      text: {
+        element: function(settings, original) {
+          var input = $('<input size=50>');
+          console.log('inside text element fxn');
+          if (settings.width !== 'none') {
+            input.width(settings.width);
+          }
+        }
+      }
+});
 // delete note
   $('#delete_' + id).on('click', function () {
       $(this).parent().fadeOut(500, function() {
