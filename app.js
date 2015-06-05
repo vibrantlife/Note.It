@@ -1,10 +1,13 @@
 // add note
 function addNoteToList(note,id) {
   $('#show-notes').prepend("<li><div class='edit' id='"+id+"'>"+note+"</div><a href='#' class='edit'>Edit</a></li>");
-  $("#"+id).editable("click",function(value,settings){
+  $("#"+id).editable("click",function(note,settings){
       console.log(this);
-      console.log(value);
-      return(value);
+      console.log(note);
+      notes[id] = note.value;
+       localStorage['notes'] = JSON.stringify(notes);
+      console.log(notes, id);
+      return(note);
     });
 }
 
