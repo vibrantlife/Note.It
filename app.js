@@ -45,14 +45,13 @@ function addNoteToList(note,id) {
       localStorage['notes'] = JSON.stringify(notes);
       return(note);
     }, {
-      cols: 5
+      cols: 5,
 
     });
 // delete note
   $('#delete_' + id).on('click', function () {
       $(this).parent().fadeOut(500, function() {
         $(this).closest('li').remove();
-        console.log(notes);
         notes.splice(id, 1);
         localStorage['notes'] = JSON.stringify(notes);
       });
